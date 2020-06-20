@@ -29,3 +29,14 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+
+
+Route::group(['middleware' => 'api','prefix' => 'roles'], function () {
+    Route::get('/getRolesWithPermissions', 'RoleController@getRolesWithPermissions')->middleware('has-permission:read-roles');
+    Route::get('/', 'RoleController@get');
+    Route::post('/', 'RoleController@store')->middleware('has-permission:create-roles');
+    Route::post('/{id}', 'RoleController@update')->middleware('has-permission:update-roles');
+    Route::delete('/{id}', 'RoleController@delete')->middleware('has-permission:delete-roles');
+    Route::get('/{id}', 'RoleController@find')->middleware('has-permission:read-roles');
+    Route::get('/getRolesWithPermissions', 'RoleController@getRolesWithPermissions')->middleware('has-permission:read-roles');
+});
