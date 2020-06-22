@@ -13,11 +13,7 @@ class RoleController extends Controller
     //
     public function store(Request $request){
 
-        $this->validate($request->all(), [
-            'name' => 'required|string|unique:roles',
-            'display_name' => 'required|string|unique:roles',
-        ]);
-
+        
         $role = Role::create([
             'name' => $request->name,
             'display_name' => $request->display_name,
