@@ -47,3 +47,38 @@ Route::group(['prefix' => 'users'], function () {
     Route::delete('/{id}', 'UserController@delete');
     Route::get('/{id}', 'UserController@find');
 });
+
+//les blogs de categorie
+Route::group(['prefix' => 'blog_categories'], function () {
+    Route::get('/', 'BlogCategorieController@index');
+    Route::post('/', 'BlogCategorieController@store');
+    Route::post('/{id}', 'BlogCategorieController@update');
+    Route::delete('/{id}', 'BlogCategorieController@destroy');
+    Route::get('/{id}', 'BlogCategorieController@find');
+});
+//les blogs 
+Route::group(['prefix' => 'blogs'], function () {
+    Route::get('/', 'BlogController@index');
+    Route::post('/', 'BlogController@store');
+    Route::post('/{id}', 'BlogController@update');
+    Route::delete('/{id}', 'BlogController@destroy');
+    Route::get('/{id}', 'BlogController@find');
+    Route::post('/{id}/comment', 'BlogCommentController@store');
+    
+});
+//les commantaires
+Route::group(['prefix' => 'blog_comments'], function () {
+
+    Route::post('/{id}', 'BlogCommentController@update');
+    Route::delete('/{id}', 'BlogCommentController@destroy');
+    Route::post('/{id}/response', 'CommentResponseController@store');
+ 
+});
+//les respobse au commentaire
+Route::group(['prefix' => 'comment_response'], function () {
+
+    Route::post('/{id}', 'CommentResponseController@update');
+    Route::delete('/{id}', 'CommentResponseController@destroy');
+ 
+});
+
