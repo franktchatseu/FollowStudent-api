@@ -22,7 +22,6 @@ Route::group([
 ], function ($router) {
 
     Route::post('login', 'AuthController@login');
-    Route::post('signup', 'AuthController@signup');
 
     Route::get('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
@@ -38,4 +37,13 @@ Route::group(['prefix' => 'roles'], function () {
     Route::post('/{id}', 'RoleController@update');
     Route::delete('/{id}', 'RoleController@delete');
     Route::get('/{id}', 'RoleController@find');
+});
+
+
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', 'UserController@get');
+    Route::post('/', 'UserController@store');
+    Route::post('/{id}', 'UserController@update');
+    Route::delete('/{id}', 'UserController@delete');
+    Route::get('/{id}', 'UserController@find');
 });
