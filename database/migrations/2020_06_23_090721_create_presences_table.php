@@ -16,9 +16,9 @@ class CreatePresencesTable extends Migration
         Schema::create('presences', function (Blueprint $table) {
             $table->increments('id');
             $table->time('heure_arrivee');
-            $table->time('heure_depart');
+            $table->time('heure_depart')->nullable();
             $table->date('date_presence');
-            $table->integer('points');
+            $table->integer('points')->nullable();
             $table->unsignedInteger('user_id');
             $table->timestamps();
 
